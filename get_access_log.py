@@ -5,7 +5,7 @@ import paramiko
 import os
 import datetime
 
-
+#byte to string function
 def btos(by):
     return (str(by, 'utf-8'))
     
