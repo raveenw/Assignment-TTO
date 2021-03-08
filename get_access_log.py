@@ -9,17 +9,16 @@ import datetime
 def btos(by):
     return (str(by, 'utf-8'))
     
-
+#log function
 def log(txt):
     x = datetime.datetime.now()
-    date = x.strftime("%d-%m-%Y %H:%M:%S")
+    date = x.strftime("%d-%b-%Y")
     log_file = open("log.txt","a")
     log_file.write(f"{date} :{txt}\n")
 
 def lambda_handler(event, context):
     
-    x = datetime.datetime.now()
-    date = x.strftime("%d-%b-%Y")
+    
 
     # boto3 client
     client = boto3.client('ec2')
@@ -38,7 +37,7 @@ def lambda_handler(event, context):
     
     print(hostPublicIP)
     
-    # downloading pem filr from S3
+    # downloading pem file from S3
     s3_client.download_file('assignments3toec2','lseg2.pem', '/tmp/file.pem')
 
     # reading pem file and creating key object
@@ -55,6 +54,7 @@ def lambda_handler(event, context):
     print("Connected to :" + host)
 
     # command list
+    #grep the access log file
     command = f'cat /var/log/nginx/access.log | grep "{date}"'
     
     stream = os.popen(command)
