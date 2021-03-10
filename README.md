@@ -11,4 +11,4 @@ Once the code is changed,"Deploy" again and can "Test".
 
 
 Static web page is located : 
-http://65.1.94.193/
+http://15.207.157.119
